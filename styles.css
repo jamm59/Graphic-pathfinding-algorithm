@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  border: 0;
+}
+
+.main {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.main .board {
+  overflow: auto;
+  padding: 10px;
+  max-width: 50vw;
+  height: 300px;
+  background-color: #D4ECDD;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main .board .node {
+  -webkit-transition: 0.05s ease-out;
+  transition: 0.05s ease-out;
+  margin: 2px;
+  background-color: #F7F6F2;
+  width: 45px;
+  height: 45px;
+}
+
+.main .board .node:hover {
+  background-color: #EEEEEE;
+}
+/*# sourceMappingURL=styles.css.map */
