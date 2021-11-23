@@ -8,9 +8,9 @@
     place-items: center;
     .board {
         overflow:auto;
-        padding: 10px;
+        padding: 15px;
         // border-radius: 20px;
-        max-width:  50vw;
+        width:  500px;
         height: 300px;
         background-color: #D4ECDD;
         display: flex;
@@ -20,7 +20,7 @@
         .node {
             // border-radius: 50%;
             transition: 0.05s ease-out;
-            margin: 2px;
+            margin: 2.5px;
             background-color: #F7F6F2;
             width:  45px;
             height: 45px;
