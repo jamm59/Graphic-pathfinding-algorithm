@@ -48,8 +48,9 @@
 }
 
 .btn {
-  background-color: blue;
+  color: #eeeeee;
+  background-color: #009DAE;
   padding: 0.8rem 2rem;
-  margin: 20px;
+  margin: 40px;
 }
 /*# sourceMappingURL=styles.css.map */

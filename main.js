@@ -6,16 +6,26 @@ let node_num = 0
 let nodes_on_board = [];
 let BOARD = [[],[],[],[],[],[]]
 let start_color = 'red';
-let started = false
+let node_color = '#F7F6F2';
+let started = false;
+let clicked_n = false;
 start.addEventListener('click', ()=> {
     started = !started;
 });
+
+
 for (let i=0; i < node.length; i++){
     node[i].addEventListener('click' ,() => {
         if (node_num < 2 && !started){
-            node[i].style.backgroundColor = start_color;
-            node_num ++;
-            start_color = 'black';
+            clicked_n = !clicked_n;
+            if(clicked_n){
+                node[i].style.backgroundColor = start_color;
+                node_num ++;
+                start_color = 'black';
+            }else {
+                node[i].style.backgroundColor = node_color;
+                node_num --;
+            }
         }
     })
     
@@ -46,9 +56,7 @@ function getstart(){
         }
     }
 }
-function isValid(pos) {
-
-}
+function isValid(pos);
 function border(pos) {
 
 }
