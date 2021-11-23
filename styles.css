@@ -22,8 +22,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -39,5 +40,16 @@
 
 .main .board .node:hover {
   background-color: #EEEEEE;
+}
+
+.btn-container {
+  position: relative;
+  top: 7rem;
+}
+
+.btn {
+  background-color: blue;
+  padding: 0.8rem 2rem;
+  margin: 20px;
 }
 /*# sourceMappingURL=styles.css.map */

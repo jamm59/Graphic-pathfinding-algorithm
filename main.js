@@ -1,21 +1,22 @@
 const node = document.querySelectorAll('.node');
 const board = document.querySelector('.board');
+const start = document.querySelector('.start');
+const end = document.querySelector('.stop');
 let node_num = 0
 let nodes_on_board = [];
 let BOARD = [[],[],[],[],[],[]]
-
-
-// let new_node = document.createElement('div');
-// new_node.className = 'node';
-// board.appendChild(new_node);
-
+let start_color = 'red';
+let started = false
+start.addEventListener('click', ()=> {
+    started = !started;
+});
 for (let i=0; i < node.length; i++){
     node[i].addEventListener('click' ,() => {
-        if (node_num < 2){
-            node[i].style.backgroundColor = 'red';
+        if (node_num < 2 && !started){
+            node[i].style.backgroundColor = start_color;
             node_num ++;
+            start_color = 'black';
         }
-        console.log(i);
     })
     
 }

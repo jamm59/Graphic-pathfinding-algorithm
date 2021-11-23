@@ -15,7 +15,7 @@
         background-color: #D4ECDD;
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
         flex-wrap: wrap;
         .node {
             // border-radius: 50%;
@@ -29,4 +29,13 @@
             background-color: #EEEEEE;
         }
     }
+}
+.btn-container {
+    position: relative;
+    top: 7rem;
+}
+.btn {
+    background-color: blue;
+    padding:0.8rem 2rem ;
+    margin: 20px;
 }
