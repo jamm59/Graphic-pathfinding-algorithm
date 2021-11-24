@@ -9,6 +9,7 @@ let start_color = 'red';
 let node_color = '#F7F6F2';
 let started = false;
 let clicked_n = false;
+
 start.addEventListener('click', ()=> {
     started = !started;
 });
@@ -98,9 +99,15 @@ function update_pos(initial_pos){
 
 function main(pos){
     update_board();
-    update_pos(pos);
+    console.log(BOARD);
+    for(let i=0; i<BOARD.length; i++){
+        for(let j=0; j< BOARD[0].length; j++){
+            BOARD[i][j].style.backgroundColor = 'pink';
+        }
+    }
+    // update_pos(pos);
 }
 
 
 
-// main();
+main();
