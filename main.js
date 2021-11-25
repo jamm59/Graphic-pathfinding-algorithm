@@ -4,12 +4,12 @@ const board = document.querySelector('.board');
 const start = document.querySelector('.start');
 const btn = document.querySelector('.btn');
 const end = document.querySelector('.stop');
-const start_color = 'rgb(255,0,0)';
-const stop_color = 'rgb(0,0,0)';
-const node_color = '#F7F6F2';
+const start_color = 'rgb(255,0,0)';                     // i used rgb colors because it 
+const stop_color = 'rgb(0,0,0)';                       //  is easier for comparisons
+const node_color = 'rgb(247, 246, 242)';
 const border_color = '';
 // non constants
-let node_num = 0
+let node_num = 0;
 let nodes_on_board = [];
 let BOARD = [[],[],[],[],[],[]];
 let started = false;
@@ -19,6 +19,7 @@ start.addEventListener('click', ()=> {
     started = !started;
 });
 
+// chosing a start and stop position 
 for (let i=0; i < node.length; i++){
     node[i].addEventListener('click' ,() => {
         if (node_num < 2 && !started){
@@ -38,9 +39,9 @@ for (let i=0; i < node.length; i++){
 
 //done
 function update_board(){
-    let count = 0
-    let start = 0
-    let stop_ = 10
+    let count = 0;
+    let start = 0;
+    let stop_ = 10;
     while (count < BOARD.length){
         for (let row=start; row < stop_; row++)
         {
@@ -66,18 +67,24 @@ function getstart(){
     }
 }
 function isValid(pos){
-
+    let x=pos[0],y=pos[1];
+    color = getComputedStyle(BOARD[x][y],'backgroundColor').backgroundColor;
+    if (color === border_color)
+        return true;
+    return false;
 }
 function border(pos) {
-
+    let x=pos[0],y=pos[1];
+    if (x > BOARD.length || y > BOARD[0].length || x < 0 || y < 0)
+        return true;
+    return false;
 }
-function update_pos(ini_pos){
+function find_end(ini_pos){
     // look up down left and right 
     let x1=ini_pos[0],y1=init_pos[1];
     let n_color = getComputedStyle(BOARD[x1][y1],'backgroundColor').backgroundColor;
-    if (n_color == stop_color) {
+    if (n_color == stop_color)
         return true;
-    }
     direction = [
         (-1,0),     //top
         (0,-1),    //left
@@ -92,19 +99,20 @@ function update_pos(ini_pos){
         let n_x = x + direction[i][0];
         let n_y = y + direction[i][1];
 
-        // if(is the rght pos){
-        //     return true;
-        // }
+        if (border((n_x,n_y)) || !isValid((n_x,n_y))) 
+            continue
 
         if(isValid((n_x,n_y)) && !border((n_x,n_y))){
+
+            let n_color = getComputedStyle(BOARD[n_x][n_y],'backgroundColor').backgroundColor;
+            if (n_color == stop_color) {
+                return true;
+            }
+
             n_pos = (n_x,n_y);
             BOARD[n_pos[0]][n_pos[1]].style.backgroundColor = start_color;
             update_pos(n_pos);
-        }
-        else if(!isValid((n_x,n_y)) || border((n_x,n_y))) {
-            continue;
-        }
-        
+        } 
     }
 }
 
@@ -112,9 +120,9 @@ function update_pos(ini_pos){
 
 function main(pos){
     update_board();
-    update_pos(pos);
+    find_end(pos);
 }
 
 
-
-// main();
+let start_pos = getstart();
+//main(start_pos);
