@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
 * {
   margin: 0;
   border: 0;
+  font-family: 'Montserrat',sans-serif;
 }
 
 .main {
@@ -11,11 +13,12 @@
 }
 
 .main .board {
+  border-radius: 20px;
   overflow: auto;
-  padding: 15px;
+  padding: 12px;
   width: 500px;
   height: 300px;
-  background-color: #D4ECDD;
+  background-color: #FFC4E1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,9 +33,10 @@
 }
 
 .main .board .node {
+  border-radius: 10px;
   -webkit-transition: 0.05s ease-out;
   transition: 0.05s ease-out;
-  margin: 2.5px;
+  margin: 2.1px;
   background-color: #F7F6F2;
   width: 45px;
   height: 45px;
@@ -42,15 +46,25 @@
   background-color: #EEEEEE;
 }
 
+.heading-header h1 {
+  font-size: 3rem;
+  letter-spacing: 1;
+}
+
 .btn-container {
   position: relative;
-  top: 7rem;
+  top: 5rem;
 }
 
 .btn {
-  color: #eeeeee;
-  background-color: #009DAE;
+  -webkit-transition: 1s ease-in;
+  transition: 1s ease-in;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: black;
+  background-color: #CEE5D0;
   padding: 0.8rem 2rem;
-  margin: 40px;
+  margin: 30px;
 }
 /*# sourceMappingURL=styles.css.map */
