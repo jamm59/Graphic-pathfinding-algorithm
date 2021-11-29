@@ -5,6 +5,9 @@ const start = document.querySelector('.start');
 const addBorder = document.querySelector('.border');
 const btn = document.querySelector('.btn');
 const end = document.querySelector('.stop');
+const CURRENT_COLOR = (x,y) => {
+    return getComputedStyle(BOARD[x][y],'backgroundColor').backgroundColor;
+}
 let start_color = 'rgb(248, 72, 94)';                     // i used rgb colors because it 
 const stop_color =  'rgb(255, 130, 67)';                     //  is easier for comparisons
 const node_color = 'rgb(247, 246, 242)';
@@ -61,8 +64,6 @@ function getstart(){
             let n_color = getComputedStyle(BOARD[i][j],'backgroundColor').backgroundColor;
              if (n_color == start_color) {
                 //if it finds the start node return the index 
-                console.log('row', ' ', i);
-                console.log('column', ' ', j);
                 return [i,j];
              }
         }
@@ -71,16 +72,15 @@ function getstart(){
 }
 function isValid(pos){
     let x=pos[0],y=pos[1];
-
-    let color = getComputedStyle(BOARD[x][y],'backgroundColor').backgroundColor;
-    if (color === border_color){
+    if (CURRENT_COLOR(x,y) === border_color){
         return false;
     }
     return true;
 }
 function border(pos) {
     let x=pos[0],y=pos[1];
-    if (x > BOARD.length || y > BOARD[0].length || x < 0 || y < 0){
+    if (x > BOARD.length - 1 || y > BOARD[0].length - 1 || x < 0 || y < 0){
+        console.log('We found a border turn back')
         return true;
     }  
     return false;
@@ -88,8 +88,8 @@ function border(pos) {
 function find_end(ini_pos){
     // look up down left and right 
     let x=ini_pos[0];
-    let  y=ini_pos[1];
-    if (getComputedStyle(BOARD[x][y],'backgroundColor').backgroundColor == stop_color){
+    let y=ini_pos[1];
+    if (CURRENT_COLOR(x,y) == stop_color){
         return true;
     }
     direction = [
@@ -104,20 +104,19 @@ function find_end(ini_pos){
         let n_x = x + direction[i][0];
         let n_y = y + direction[i][1];
 
-        if (getComputedStyle(BOARD[n_x][n_y],'backgroundColor').backgroundColor == stop_color){
+        if (CURRENT_COLOR(n_x,n_y) == stop_color){
             return true;
         }
 
         if (border([n_x,n_y]) || !isValid([n_x,n_y])) {
-            console.log('we reached here');
             continue
         }
 
         if(isValid([n_x,n_y]) && !border([n_x,n_y])){
-            console.log('did not work');
+            BOARD[n_x][n_y].style.backgroundColor = start_color;
             n_pos = [n_x,n_y];
-            BOARD[n_pos[0]][n_pos[1]].style.backgroundColor = start_color;
             setTimeout(find_end,200,n_pos);
+            // BOARD[n_pos[0]][n_pos[1]].style.backgroundColor = stop_color;
             
         } 
     }
@@ -128,7 +127,7 @@ function find_end(ini_pos){
 function main(pos){
     update_board();
     if (find_end(pos)){
-        window.alert('Path found')
+        window.alert('Path found');
     }
 }
 
